@@ -27,10 +27,11 @@
 package com.swisscom.ais.itext;
 
 import javax.annotation.*;
-
+import co.teebly.signature.Worker;
 import java.io.File;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Date;
 
 public class SignPDF {
 
@@ -131,7 +132,10 @@ public class SignPDF {
         }
 
     }
-
+    public void runSigning(String[] params) throws Exception {
+        int randomNumber = (int) (Math.random() * 10000);
+        runSigning(params, String.valueOf(randomNumber));
+    }
     /**
      * Parse given parameters, check if all necessary parameters exist and if there are not unnecessary parameters.
      * If there are problems with parameters application will abort with exit code 1.
@@ -139,7 +143,9 @@ public class SignPDF {
      *
      * @param params argument list as described for main metho
      */
-    public void runSigning(String[] params) throws Exception {
+    public void runSigning(String[] params, String transactionId) throws Exception {
+      
+        Worker.get().setTransactionId(transactionId);
 
         parseParameters(params);
         checkNecessaryParams();
@@ -157,7 +163,7 @@ public class SignPDF {
         	System.err.println("Property File not found. Add '-config=VALUE'-parameter with correct path");
 
         Soap dss_soap = new Soap(verboseMode, debugMode, propertyFilePath);
-        dss_soap.sign(signature, pdfToSign, signedPDF, signingReason, signingLocation, signingContact, certificationLevel, distinguishedName, msisdn, msg, language, serialnumber);
+        dss_soap.sign(signature, pdfToSign, signedPDF, signingReason, signingLocation, signingContact, certificationLevel, distinguishedName, msisdn, msg, language, serialnumber, transactionId);
     }
 
     private void printUsage() {
