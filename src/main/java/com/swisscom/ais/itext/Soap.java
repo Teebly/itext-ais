@@ -23,17 +23,7 @@
 
 package com.swisscom.ais.itext;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.*;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -150,7 +140,10 @@ public class Soap {
           properties = new Properties();
   
           try {
-              properties.load(new FileReader(_cfgPath));
+              System.out.println("Loading props from resource path: " + _cfgPath);
+              InputStream in = getClass().getResourceAsStream(_cfgPath);
+              BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+              properties.load(reader);
           } catch (IOException e) {
               throw new FileNotFoundException(("Could not load property file"));
           }

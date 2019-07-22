@@ -30,7 +30,8 @@ public class SqsMessageProducer {
   }
 
   public static String[] prepareArgs(SignatureRequest sr, File infile, File outfile) {
-    String propsFile = SqsMessageProducer.class.getResource("/signpdf.properties").getFile();
+//    String propsFile = SqsMessageProducer.class.getResource("/signpdf.properties").getFile();
+    String propsFile = "/signpdf.properties";
     ArrayList<String> res = new ArrayList<>();
     res.add("-vv");
     res.add(String.format("-infile=%s", infile.getAbsolutePath()));

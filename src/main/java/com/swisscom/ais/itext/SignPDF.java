@@ -351,13 +351,13 @@ public class SignPDF {
             	serialnumber = args[i].substring(args[i].indexOf("=") + 1).trim();
             } else if (param.contains("-config=")) {
                 propertyFilePath = args[i].substring(args[i].indexOf("=") + 1).trim();
-                File propertyFile = new File(propertyFilePath);
-                if (!propertyFile.isFile() || !propertyFile.canRead()) {
-                    if (debugMode || verboseMode) {
-                        printError("Property file path is set but file does not exist or can not read it: "+propertyFilePath);
-                    }
-                    throw new Exception("Property file path is set but file does not exist or can not read it: "+propertyFilePath);
-                }
+//                File propertyFile = new File(propertyFilePath);
+//                if (!propertyFile.isFile() || !propertyFile.canRead()) {
+//                    if (debugMode || verboseMode) {
+//                        printError("Property file path is set but file does not exist or can not read it: "+propertyFilePath);
+//                    }
+//                    throw new Exception("Property file path is set but file does not exist or can not read it: "+propertyFilePath);
+//                }
             } else if (args[i].toLowerCase().contains("-vv")) {
             	debugMode = true;
             } else if (param.contains("-v")) {
