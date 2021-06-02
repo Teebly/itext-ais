@@ -1,6 +1,10 @@
 AIS: iText
 ============
 
+## This repo is deprecated, do not use
+It was just an experiment to help us figure out how to sign a PDF document using cryptographic material. Use `pdf-signing` instead
+
+# Original code
 Ignore most of the original readme, it's not quite accurate
 
 ```
@@ -55,7 +59,7 @@ OPTIONS
                              - fr (français)
                              - it (italiano)
   -stepUpSerialNumber=VALUE  - Optional: Verify the MobileID / PwdOTP SerialNumber (16 chars; starting with 'MIDCHE' or 'SAS01')
-                            Document will only be signed if it matched the actual SerialNumber                        
+                            Document will only be signed if it matched the actual SerialNumber
 
   ### ADOBE PDF SETTINGS ###
   -reason=VALUE           - Signing Reason
@@ -88,7 +92,7 @@ EXAMPLES
   [sign with on demand certificate and mobile id authorization]
     java com.swisscom.ais.itext.SignPDF -v -type=sign -infile=sample.pdf -outfile=signed.pdf -dn='cn=Alice Smith,c=CH' -stepUpMsisdn=41792080350 -stepUpMsg='acme.com: Sign the PDF? (#TRANSID#)' -stepUpLang=en
     java com.swisscom.ais.itext.SignPDF -v -type=sign -infile=sample.pdf -outfile=signed.pdf -dn='cn=Alice Smith,c=CH' -stepUpMsisdn=41792080350 -stepUpMsg='acme.com: Sign the PDF? (#TRANSID#)' -stepUpLang=en -stepUpSerialNumber=MIDCHE2EG8NAWUB3
-````   
+````
 
 #### Dependencies
 
@@ -138,11 +142,11 @@ Run the JAR (Unix/OSX) with DEBUG enabled:
 
 Create the latest JAR: `jar cfe <JAR>/signpdf-x.y.z.jar com.swisscom.ais.itext.SignPDF -C <CLASS> .`
 
-If you're on Windows then use a semicolon ; instead of the colon : 
+If you're on Windows then use a semicolon ; instead of the colon :
 
 #### Compile & Run the Java Classes
 
-The source files can be compiled as follows. 
+The source files can be compiled as follows.
 
 Compile the sources: `javac -d <CLASS> -cp "<LIB>/*" <SRC>/*.java`
 
@@ -159,7 +163,7 @@ Run the application (Unix/OSX) with custom path to the properties file:
 Run the application (Unix/OSX) with DEBUG enabled:
 `java -Djavax.net.debug=all -Djava.security.debug=certpath -cp "<CLASS>:<LIB>/*" com.swisscom.ais.itext.SignPDF`
 
-If you're on Windows then use a semicolon ; instead of the colon : 
+If you're on Windows then use a semicolon ; instead of the colon :
 
 #### JavaDoc
 
@@ -171,7 +175,7 @@ Create the latest JavaDoc: `javadoc -windowtitle "Swisscom All-in Signing Servic
 
 PKCS12 certificate file consisting of public certificate and private key.
 
-Extraction: 
+Extraction:
 1. Extract public client certificate:
 
    `openssl pkcs12 -in <yourPKCS12>.p12 -clcerts -nokeys | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > public.crt`
